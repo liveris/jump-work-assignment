@@ -1,4 +1,4 @@
-from models.model import Person, Group, EmailAddress
+from models.model import EmailAddress, Group, Person
 
 
 def create_person(_id, first_name, last_name):

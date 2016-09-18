@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import patch
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -7,21 +6,21 @@ from sqlalchemy.orm import sessionmaker
 from libs.api import (add_group_to_address_book,
                       add_person_to_address_book,
                       get_group_members,
-                      get_person_groups,
+                      get_person_by_email,
                       get_person_by_name,
-                      get_person_by_email)
-from libs.helpers import (create_person, create_group,
-                          create_email_address)
+                      get_person_groups)
 
-from models.meta import Base
-from models.model import AddressBookPerson, AddressBookGroup
+from libs.helpers import (create_email_address,
+                          create_group,
+                          create_person)
+
+from models.model import AddressBookPerson, AddressBookGroup, Base
 
 
 class TestLibAPI(unittest.TestCase):
     def setUp(self):
         self.engine = create_engine('sqlite:///:memory:')
         Session = sessionmaker(bind=self.engine)
-
         Base.metadata.create_all(self.engine)
         self.session = Session()
 

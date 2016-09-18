@@ -1,8 +1,10 @@
 from sqlalchemy import Column, Integer, ForeignKey, String
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
 
-from models.meta import Base
+
+Base = declarative_base()
 
 
 class Person(Base):
